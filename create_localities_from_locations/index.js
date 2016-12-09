@@ -5,8 +5,16 @@ var superAgent = require('superagent');
 var csvParse = require('csv-parse');
 var async = require('async');
 
+var predictionsJson, geocodesArray;
+try {
+    predictionsJson = require('./predictions.json');
+    geocodesArray = require('./geocodes.json').geocodes;
+} catch (e) {}
+
 var LOCATIONS_FILE = __dirname + '/locations.csv';
 var LOCALITY_FILE_NAME = __dirname + '/localities.csv';
+var PREDICTIONS_FILE = __dirname + '/predictions.json';
+var GEOCODES_FILE = __dirname + '/geocodes.json';
 var API_CALL_DELAY = 0;
 var API_CALL_LIMIT = 50000;
 var API_DELAY = 120000;
@@ -47,6 +55,11 @@ async.waterfall([
 
     // Fetch Predictions for all Locations
     function (csv, callback) {
+        if (predictionsJson) {
+            console.log('Using Predictions JSON for Geocoding!\n');
+            return callback(null, predictionsJson);
+        }
+
         console.log('Fetching Predictions...');
         var predictions = {};
         async.eachSeries(csv, function (line, next) {
@@ -70,12 +83,18 @@ async.waterfall([
         }, function (err) {
             if (err) { return callback(err); }
             console.log('\nDone!                                      \n');
+            fs.writeFileSync(PREDICTIONS_FILE, JSON.stringify(predictions));
             callback(err, predictions);
         });
     },
 
     // Fetch Reverse Geo of Predictions
     function (predictions, callback) {
+        if (geocodesArray) {
+            console.log('Using Geocodes JSON for Parsing!\n');
+            return callback(null, geocodesArray);
+        }
+
         console.log('Fetching Reverse Geo...');
         var geocodes = [];
         var placeIds = Object.keys(predictions);
@@ -96,6 +115,7 @@ async.waterfall([
         }, function (err) {
             if (err) { return callback(err); }
             console.log('\nDone!                                      \n');
+            fs.writeFileSync(GEOCODES_FILE, JSON.stringify({ geocodes: geocodes }));
             callback(err, geocodes);
         });
     },
@@ -209,7 +229,7 @@ function getCityFromGeocode(geocode) {
         if (addressComponent.types.indexOf('locality') !== -1) {
             return true;
         }
-    })[0];
+    })[0] || {};
 }
 
 function addDelay(callback) {
