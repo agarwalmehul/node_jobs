@@ -123,7 +123,7 @@ async.waterfall([
     // Create Locality CSV from Geocodes
     function (geocodes, callback) {
         console.log('Parsing Geocodes...');
-        var LOCALITY_HEADER = 'place_id,types,short_name,long_name,city,formatted_address,lat,lng,url_key';
+        var LOCALITY_HEADER = 'place_id,types,short_name,long_name,city,formatted_address,lat,lng,city_id,url_key';
         var localities = [LOCALITY_HEADER];
         geocodes.forEach(function (geocode) {
             var locality = [];
@@ -139,6 +139,7 @@ async.waterfall([
                 locality.push("\"" + geocode.formatted_address + "\"");
                 locality.push(location.lat);
                 locality.push(location.lng);
+                locality.push("\"" + "\"");
                 locality.push(address.long_name.toLowerCase().replace(/ /g, '-'));
                 locality = locality.join();
                 localities.push(locality);
