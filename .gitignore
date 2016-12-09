@@ -1,3 +1,6 @@
 node_modules
+
 create_service_urls_sitemap/*.csv
 create_service_urls_sitemap/*.xml
+
+create_localities_from_locations/localities.csv
