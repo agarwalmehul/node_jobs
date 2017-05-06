@@ -7,7 +7,7 @@ var LOG_APPEND_FLAG = 'a';
 
 var DOMAINS = [
     { name: "https://zimmber.com", fileName: "zimmber" },
-    { name: "https://lite.zimmber.com", fileName: "lite.zimmber" }
+    { name: "https://lite.zimmber.com", fileName: "lite-zimmber" }
 ];
 
 var CITIES = [
@@ -37,37 +37,45 @@ var LOCALITIES = {
 };
 
 var SERVICE_CONFIGS = [
-    { service: "salon-at-home", enabled: true, cities: [], showLocalities: false, },
-    { service: "packers-movers-local", enabled: true, cities: [], showLocalities: false },
-    { service: "colour-your-home", enabled: true, cities: [], showLocalities: false },
-    { service: "home-makeover", enabled: true, cities: [], showLocalities: false },
-    { service: "drivers-on-demand", enabled: true, cities: [], showLocalities: false },
-    { service: "Electrical-Repairing-Services", enabled: true, cities: arrayDiff(CITIES, ["bangalore"]), showLocalities: true },
-    { service: "home-cleaning", enabled: true, cities: CITIES, showLocalities: true },
-    { service: "car-cleaning", enabled: true, cities: arrayDiff(CITIES, ["bangalore"]), showLocalities: true },
-    { service: "bike-spa", enabled: true, cities: ["mumbai"], showLocalities: false },
-    { service: "sofa-cleaning", enabled: true, cities: arrayDiff(CITIES, ["bangalore"]), showLocalities: true },
-    { service: "Air-Conditioner-Repair-Services", enabled: true, cities: arrayDiff(CITIES, ["bangalore"]), showLocalities: true },
-    { service: "Plumbing-Repair-Services", enabled: true, cities: arrayDiff(CITIES, ["bangalore"]), showLocalities: true },
-    { service: "Carpentry-Services", enabled: true, cities: arrayDiff(CITIES, ["bangalore"]), showLocalities: true },
-    { service: "carpet-cleaning", enabled: true, cities: arrayDiff(CITIES, ["bangalore"]), showLocalities: true },
-    { service: "pest-control-service", enabled: true, cities: CITIES, showLocalities: true },
-    { service: "pc-laptop-repair", enabled: true, cities: arrayDiff(CITIES, ["bangalore"]), showLocalities: true },
-    { service: "refrigerator-repair", enabled: true, cities: arrayDiff(CITIES, ["bangalore"]), showLocalities: true },
-    { service: "washing-machine-repair", enabled: true, cities: arrayDiff(CITIES, ["bangalore"]), showLocalities: true },
-    { service: "microwave-repair", enabled: true, cities: arrayDiff(CITIES, ["bangalore"]), showLocalities: true },
-    { service: "geyser-service", enabled: true, cities: arrayDiff(CITIES, ["bangalore"]), showLocalities: true },
+    { service: "salon-at-home", fileName: 'salon-sitemap', enabled: true, cities: [], showLocalities: false, priorities: { service: '9.00', city: '0.00', locality: '0.00' } },
+    { service: "packers-movers-local", fileName: 'pnm-sitemap', enabled: true, cities: [], showLocalities: false, priorities: { service: '9.00', city: '0.00', locality: '0.00' } },
+    { service: "colour-your-home", fileName: 'home-color-sitemap', enabled: true, cities: [], showLocalities: false, priorities: { service: '9.00', city: '0.00', locality: '0.00' } },
+    { service: "home-makeover", fileName: 'home-makeover-sitemap', enabled: true, cities: [], showLocalities: false, priorities: { service: '1.00', city: '2.00', locality: '3.00' } },
+    { service: "drivers-on-demand", fileName: 'dod-sitemap', enabled: true, cities: [], showLocalities: false, priorities: { service: '0.00', city: '0.00', locality: '0.00' } },
+    { service: "Electrical-Repairing-Services", fileName: 'electrical-sitemap', enabled: true, cities: arrayDiff(CITIES, ["bangalore"]), showLocalities: true, priorities: { service: '1.00', city: '2.00', locality: '3.00' } },
+    { service: "home-cleaning", fileName: 'home-spa-sitemap', enabled: true, cities: CITIES, showLocalities: true, priorities: { service: '1.00', city: '2.00', locality: '3.00' } },
+    { service: "car-cleaning", fileName: 'car-spa-sitemap', enabled: true, cities: arrayDiff(CITIES, ["bangalore"]), showLocalities: true, priorities: { service: '1.00', city: '2.00', locality: '3.00' } },
+    { service: "bike-spa", fileName: 'bike-spa-sitemap', enabled: true, cities: ["mumbai"], showLocalities: false, priorities: { service: '1.00', city: '2.00', locality: '3.00' } },
+    { service: "sofa-cleaning", fileName: 'sofa-spa-sitemap', enabled: true, cities: arrayDiff(CITIES, ["bangalore"]), showLocalities: true, priorities: { service: '1.00', city: '2.00', locality: '3.00' } },
+    { service: "Air-Conditioner-Repair-Services", fileName: 'ac-sitemap', enabled: true, cities: arrayDiff(CITIES, ["bangalore"]), showLocalities: true, priorities: { service: '1.00', city: '2.00', locality: '3.00' } },
+    { service: "Plumbing-Repair-Services", fileName: 'plumbing-sitemap', enabled: true, cities: arrayDiff(CITIES, ["bangalore"]), showLocalities: true, priorities: { service: '1.00', city: '2.00', locality: '3.00' } },
+    { service: "Carpentry-Services", fileName: 'carpentry-sitemap', enabled: true, cities: arrayDiff(CITIES, ["bangalore"]), showLocalities: true, priorities: { service: '1.00', city: '2.00', locality: '3.00' } },
+    { service: "carpet-cleaning", fileName: 'carpet-spa-sitemap', enabled: true, cities: arrayDiff(CITIES, ["bangalore"]), showLocalities: true, priorities: { service: '1.00', city: '2.00', locality: '3.00' } },
+    { service: "pest-control-service", fileName: 'pest-control-sitemap', enabled: true, cities: CITIES, showLocalities: true, priorities: { service: '1.2', city: '2.00', locality: '3.00' } },
+    { service: "pc-laptop-repair", fileName: 'pc-sitemap', enabled: true, cities: arrayDiff(CITIES, ["bangalore"]), showLocalities: true, priorities: { service: '1.00', city: '2.00', locality: '3.00' } },
+    { service: "refrigerator-repair", fileName: 'refrigerator-sitemap', enabled: true, cities: arrayDiff(CITIES, ["bangalore"]), showLocalities: true, priorities: { service: '1.00', city: '2.00', locality: '3.00' } },
+    { service: "washing-machine-repair", fileName: 'washing-machine-sitemap', enabled: true, cities: arrayDiff(CITIES, ["bangalore"]), showLocalities: true, priorities: { service: '1.00', city: '2.00', locality: '3.00' } },
+    { service: "microwave-repair", fileName: 'microwave-sitemap', enabled: true, cities: arrayDiff(CITIES, ["bangalore"]), showLocalities: true, priorities: { service: '1.00', city: '2.00', locality: '3.00' } },
+    { service: "geyser-service", fileName: 'geyser-sitemap', enabled: true, cities: arrayDiff(CITIES, ["bangalore"]), showLocalities: true, priorities: { service: '1.00', city: '2.00', locality: '3.00' } },
 ];
 
-var SITEMAP_HEADER = '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">';
-var SITEMAP_HEADER_CLOSE = '\n</urlset>';
-var SITEMAP_TEMPLATE = `
+var SITEMAP_URL_HEADER = '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">';
+var SITEMAP_URL_HEADER_CLOSE = '\n</urlset>';
+var SITEMAP_URL_TEMPLATE = `
     <url>
         <loc>{URL}</loc>
         <lastmod>{TIMESTAMP}</lastmod>
         <changefreq>weekly</changefreq>
         <priority>{PRIORITY}</priority>
     </url>`;
+
+var SITEMAP_HEADER = `<?xml version="1.0" encoding="UTF-8"?>\n<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">`;
+var SITEMAP_HEADER_CLOSE = '\n</sitemapindex>';
+var SITEMAP_TEMPLATE = `
+    <sitemap>
+        <loc>{URL}</loc>
+        <lastmod>{TIMESTAMP}</lastmod>
+    </sitemap>`;
 
 var TIMESTAMP = (new Date()).toISOString();
 TIMESTAMP = TIMESTAMP.replace(/(.\d{3}Z)/, '+00:00');
@@ -78,34 +86,32 @@ var PRIORITY_CITY = '0.5';
 var PRIORITY_LOCALITY = '0.8';
 
 var SITEMAPS = {};
-var URLS = {};
 
+process.stdout.write('\nCreating Sitemap Data...');
 DOMAINS.forEach(function(domain) {
-    SITEMAPS[domain.fileName] = [];
-    URLS[domain.fileName] = [];
-    var domainSitemaps = SITEMAPS[domain.fileName];
-    var domainURLS = URLS[domain.fileName];
-
     var baseUrl = domain.name;
-    var baseSitemap = getSitemap(baseUrl, PRIORITY_HOME);
+    var baseSitemap = getSitemap(SITEMAP_URL_TEMPLATE, baseUrl, PRIORITY_HOME);
 
     SERVICE_CONFIGS.forEach(function(serviceConfig) {
         if (!serviceConfig.enabled) { return; }
+
+        var priorities = serviceConfig.priorities;
+        var serviceFileName = [domain.fileName, serviceConfig.fileName].join('/');
+        SITEMAPS[serviceFileName] = [];
+        var serviceSitemaps = SITEMAPS[serviceFileName];
 
         var serviceUrl = [baseUrl, serviceConfig.service].join('/');
         var whitelistCities = serviceConfig.cities;
 
         // Create Sitemap with Service
-        var serviceSitemap = getSitemap(serviceUrl, PRIORITY_SERVICE);
-        domainSitemaps.push(serviceSitemap);
-        domainURLS.push(serviceUrl);
+        var serviceSitemap = getSitemap(SITEMAP_URL_TEMPLATE, serviceUrl, priorities.service);
+        serviceSitemaps.push(serviceSitemap);
 
         whitelistCities.forEach(function(city) {
             // Create Sitemap with Service and City
             var cityUrl = [serviceUrl, city].join('/');
-            var citySitemap = getSitemap(cityUrl, PRIORITY_CITY);
-            domainSitemaps.push(citySitemap);
-            domainURLS.push(cityUrl);
+            var citySitemap = getSitemap(SITEMAP_URL_TEMPLATE, cityUrl, priorities.city);
+            serviceSitemaps.push(citySitemap);
 
             if (!serviceConfig.showLocalities || !LOCALITIES[city]) { return; }
 
@@ -114,44 +120,58 @@ DOMAINS.forEach(function(domain) {
 
                 // Create Sitemap with Service, City and Location
                 var locUrl = [cityUrl, locality].join('/');
-                var locSitemap = getSitemap(locUrl, PRIORITY_LOCALITY);
-                domainSitemaps.push(locSitemap);
-                domainURLS.push(locUrl);
+                var locSitemap = getSitemap(SITEMAP_URL_TEMPLATE, locUrl, priorities.locality);
+                serviceSitemaps.push(locSitemap);
             });
         });
     });
 });
+process.stdout.write('\rCreating Sitemap Data: Done!\n');
 
-DOMAINS.forEach(function (domain) {
-    var fileName = __dirname + '/' + domain.fileName + '.xml';
-    var logFile = changeLoggerToLogInFile(fileName, 'w');
-    var logFileCsv = changeLoggerToLogInFile(fileName.replace('.xml', '.csv'), 'w');
+console.log('\nWriting XML and CSV Files...');
+Object.keys(SITEMAPS).forEach(function (fileName) {
+    var sitemaps = SITEMAPS[fileName];
 
-    // Write Excel File Header
-    logFileCsv.write('URL\n');
+    process.stdout.write(fileName + '...');
 
-    // Write URLs to Excel File
-    var urls = URLS[domain.fileName];
-    urls.forEach(function(url) {
-        logFileCsv.write(url + '\n');
-    });
+    var logFileName = __dirname + '/' + fileName;
+    var sitemapFileName = logFileName + '.xml';
+    var sitemapLogFile = createLogFile(sitemapFileName, 'w');
+    var csvFileName = logFileName + '.csv';
+    var csvLogFile = createLogFile(csvFileName, 'w');
 
-    // Close Excel File
-    logFileCsv.end('');
-
-
-    // Write Sitemap Opening Tag
-    logFile.write(SITEMAP_HEADER);
-
-    // Write Sitemaps to XML File
-    var sitemaps = SITEMAPS[domain.fileName];
+    sitemapLogFile.write(SITEMAP_URL_HEADER);
+    csvLogFile.write('URL\n');
     sitemaps.forEach(function (sitemap) {
+        sitemapLogFile.write(sitemap);
+
+        var sitemapUrl = sitemap.match(/<loc>(.*?)<\/loc>/g).toString();
+        sitemapUrl = sitemapUrl.substring(5, sitemapUrl.length-6);
+        csvLogFile.write(sitemapUrl + '\n');
+    });
+    sitemapLogFile.end(SITEMAP_URL_HEADER_CLOSE);
+    csvLogFile.end('');
+    process.stdout.write('\r' + fileName + ': Done!\n');
+});
+console.log('Writing Complete!');
+
+process.stdout.write('\nWriting Unified XML Files...');
+DOMAINS.forEach(function (domain) {
+    process.stdout.write('\n' + domain.fileName + '...');
+    var logFile = createLogFile(__dirname + '/' + domain.fileName + '/' + 'sitemap.xml', 'w');
+    logFile.write(SITEMAP_HEADER);
+    SERVICE_CONFIGS.forEach(function (serviceConfig) {
+        if (!serviceConfig.enabled) { return; }
+
+        var url = [domain.name, serviceConfig.fileName + '.xml'].join('/');
+        var sitemap = getSitemap(SITEMAP_TEMPLATE, url);
         logFile.write(sitemap);
     });
-
-    // Close Sitemap File
     logFile.end(SITEMAP_HEADER_CLOSE);
+    process.stdout.write('\r' + domain.fileName + ': Done!');
 });
+console.log('\nWriting Complete!');
+
 
 console.log('\nAll Site-maps generated!');
 
@@ -165,11 +185,11 @@ function arrayDiff(fromArray, toArray) {
     return result;
 }
 
-function getSitemap(url, priority) {
-    return SITEMAP_TEMPLATE.replace('{URL}', url).replace('{TIMESTAMP}', TIMESTAMP).replace('{PRIORITY}', priority);
+function getSitemap(TEMPLATE, url, priority) {
+    return TEMPLATE.replace('{URL}', url).replace('{TIMESTAMP}', TIMESTAMP).replace('{PRIORITY}', priority);
 }
 
-function changeLoggerToLogInFile(fileName, flags) {
+function createLogFile(fileName, flags) {
     var logStdout = process.stdout;
     var logFile = fs.createWriteStream(fileName, { flags: flags || 'w' });
     return logFile;

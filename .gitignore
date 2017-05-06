@@ -1,7 +1,7 @@
 node_modules
 
-create_service_urls_sitemap/*.csv
-create_service_urls_sitemap/*.xml
+create_service_urls_sitemap/zimmber/*
+create_service_urls_sitemap/lite-zimmber/*
 
 create_localities_from_locations/localities.csv
 create_localities_from_locations/predictions.json
